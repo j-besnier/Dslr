@@ -2,7 +2,7 @@
 # @Author: Jean Besnier
 # @Date:   1970-01-01 01:00:00
 # @Last Modified by:   Jean Besnier
-# @Last Modified time: 2024-12-19 15:49:30
+# @Last Modified time: 2024-12-25 22:43:56
 import pandas as pd
 import numpy as np
 import sys
@@ -49,27 +49,7 @@ def main():
     y = data['Hogwarts House']
     y = pd.get_dummies(y).values  # One-hot encoding of target variable
     
-    # Split the data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
-    
-    # Initialize weights
-    weights = np.zeros((X_train.shape[1], y_train.shape[1]))
-    
-    # Set hyperparameters
-    learning_rate = 0.01
-    iterations = 10000
-    
-    # Train the model using gradient descent
-    weights, cost_history = gradient_descent(X_train, y_train, weights, learning_rate, iterations)
-    
-    # Save the weights to a file
-    np.save('weights.npy', weights)
-    
-    print("Training complete. Weights saved to 'weights.npy'.")
 
 if __name__ == "__main__":
     main()
